@@ -1,10 +1,11 @@
 import { CalendarIcon, EditIcon, HamburgerIcon, InfoOutlineIcon, SettingsIcon, StarIcon } from '@chakra-ui/icons'
-import { List, ListIcon, ListItem } from '@chakra-ui/react'
+import { Divider, List, ListIcon, ListItem } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 
 export default function Sidebar() {
   return (
     <List color="white" fontSize="1.2em" spacing={4}>
+        {/* Admin sidebar end******************************************/}
       <ListItem>
         <NavLink to="/">
           <ListIcon as={CalendarIcon} />
@@ -36,11 +37,70 @@ export default function Sidebar() {
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/adminsettings">
+        <NavLink to="/profilesettings">
           <ListIcon as={SettingsIcon} />
           Admin Settings
         </NavLink>
       </ListItem>
+        {/* Admin sidebar end******************************************/}
+
+        <Divider borderColor="gray.400" />
+
+        {/* Student ***************************************************/}
+        <ListItem>
+          <NavLink to="/userdashboard">
+            {/* <ListIcon as={SettingsIcon} /> */}
+            Student Dashboard
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="/profilesettings">
+            {/* <ListIcon as={SettingsIcon} /> */}
+            Profile Setting
+          </NavLink>
+        </ListItem>
+        {/* Student ***************************************************/}
+
+        <Divider borderColor="gray.400" />
+
+         {/* Instructor ************************************************/}
+        <ListItem>
+          <NavLink to="/userdashboard">
+            {/* <ListIcon as={SettingsIcon} /> */}
+            Instructor Dashboard
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="/table">
+            {/* <ListIcon as={SettingsIcon} /> */}
+            Students
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="/profilesettings">
+            {/* <ListIcon as={SettingsIcon} /> */}
+            Profile Setting
+          </NavLink>
+        </ListItem>
+        {/* Instructor *************************************************/}
+
+        <Divider borderColor="gray.400" />
+
+        {/* Staff ******************************************************/} 
+  
+        <ListItem>
+          <NavLink to="/userdashboard">
+            {/* <ListIcon as={SettingsIcon} /> */}
+            Staff Dashboard
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink to="/profilesettings">
+            {/* <ListIcon as={SettingsIcon} /> */}
+            Profile Setting
+          </NavLink>
+        </ListItem>
+        {/* Staff ******************************************************/} 
     </List>
   )
 }

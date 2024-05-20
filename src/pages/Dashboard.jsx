@@ -59,19 +59,9 @@ export default function Dashboard() {
   ];
 
   return (
-    // <Container as="section" maxWidth="4xl" py="20px">
-    //   <Heading my="30px" p="10px">Philsca</Heading>
-    //   <Text marginLeft="30px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, voluptates!</Text>
-    //   <Text ml="30px" color="blue.300" fontWeight="bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, voluptates!</Text>
-
-    //   <Box sx={boxStyles}>
-    //     <Text color="white">This is Box</Text>
-    //   </Box>
-    // </Container>
-
     <SimpleGrid spacing={10} minChildWidth={300}>
     {data.map((detail, index) => (
-      <Card key={index} borderTopWidth="8px" borderTopColor={detail.color} bg="white">
+      <Card key={index} borderTopWidth="8px" borderTopColor={detail.color} bg="white" shadow="lg">
         <CardHeader color="gray.700">
           <Flex gap={5}>
             <Box w="50px" h="50px">
@@ -93,7 +83,6 @@ export default function Dashboard() {
 
         <CardFooter>
           <HStack>
-            {/* Add your footer buttons or actions here */}
             <Button variant="ghost" leftIcon={<ViewIcon />} />
           </HStack>
         </CardFooter>
@@ -102,9 +91,3 @@ export default function Dashboard() {
   </SimpleGrid>
   )
 }
-
-// export const tasksLoader = async () => {
-//   const res = await fetch('http://localhost:3000/tasks')
-
-//   return res.json()
-// }

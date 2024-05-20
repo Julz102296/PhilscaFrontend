@@ -17,7 +17,7 @@ export default function Navbar() {
 
   return (
     <Flex as="nav" marginBottom="40px" p="10px" alignItems="center">
-      <Heading as="h1">Philsca</Heading>
+      <Heading as="h1" color="purple.500">Philsca</Heading>
       <Spacer />
 
       <HStack spacing="20px"> 

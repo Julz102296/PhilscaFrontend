@@ -1,92 +1,86 @@
-// import { DeleteIcon, EditIcon, ViewIcon } from '@chakra-ui/icons'
-// import { Button, Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
-import React from 'react'
-import Studenttable from '../tables/Studenttable'
+import React, { useState } from 'react';
+import Filters from '../components/Filters';
+import {
+  Box,
+  Button,
+  Card,
+  Divider,
+  List,
+  ListItem,
+  SimpleGrid,
+  Text,
+} from '@chakra-ui/react';
+// import { MdCheckCircle } from 'react-icons/md';
+// import { ViewIcon } from '@chakra-ui/icons';
+import IdModal from '../components/IdModal';
+
+const studentData = [
+  { id: 1, name: 'John Doe' },
+  { id: 2, name: 'Jane Doe' },
+  { id: 3, name: 'Alice Johnson' },
+  { id: 4, name: 'Bob Smith' },
+  { id: 5, name: 'Emily Davis' },
+  { id: 6, name: 'Michael Wilson' },
+  { id: 7, name: 'Sophia Brown' },
+  { id: 8, name: 'William Taylor' },
+  { id: 9, name: 'Olivia Martinez' },
+  { id: 10, name: 'James Anderson' },
+];
 
 export default function StudentIdList() {
-  return (
-    <Studenttable />
-      
-  )
-}
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedStudent, setSelectedStudent] = useState(null);
 
-{/* <TableContainer>
-  <Table variant='simple'>
-    <TableCaption>Student List 2024</TableCaption>
-    <Thead>
-      <Tr>
-        <Th isNumeric>StudentId</Th>
-        <Th>Name</Th>
-        <Th>Course</Th>
-        <Th>Year</Th>
-        <Th isNumeric>SchoolYear</Th>
-        <Th>Semester Type</Th>
-        <Th>Address</Th>
-        <Th isNumeric>Contact</Th>
-        <Th>Birthdate</Th>
-        <Th>Gender</Th>
-        <Th></Th>
-      </Tr>
-    </Thead>
-    <Tbody>
-      <Tr>
-        <Td isNumeric>001</Td>
-        <Td>Francel P. Foldosino</Td>
-        <Td>BSAIT</Td>
-        <Td>3rd</Td>
-        <Td isNumeric>2024-2025</Td>
-        <Td>1st Sem/2nd Sem</Td>
-        <Td>Pasay City</Td>
-        <Td isNumeric>09691097759</Td>
-        <Td isNumeric>Oct 30,2002</Td>
-        <Td>F</Td>
-        <Td>
-          <Button variant="ghost" leftIcon={<ViewIcon />}></Button>
-          <Button variant="ghost" leftIcon={<EditIcon />}></Button>
-          <Button variant="ghost" leftIcon={<DeleteIcon />}></Button>
-        </Td>
-      </Tr>
-      <Tr>
-      <Td isNumeric>002</Td>
-        <Td>Casandra Denise O. Dizon</Td>
-        <Td>BSAIT</Td>
-        <Td>3rd</Td>
-        <Td isNumeric>2024-2025</Td>
-        <Td>1st Sem/2nd Sem</Td>
-        <Td>Pasay City</Td>
-        <Td isNumeric>09260949090</Td>
-        <Td isNumeric>May 29,2003</Td>
-        <Td>F</Td>
-        <Td>
-          <Button variant="ghost" leftIcon={<ViewIcon />}></Button>
-          <Button variant="ghost" leftIcon={<EditIcon />}></Button>
-          <Button variant="ghost" leftIcon={<DeleteIcon />}></Button>
-        </Td>
-      </Tr>
-      <Tr>
-      <Td isNumeric>003</Td>
-        <Td>Anton Van F. Domingo</Td>
-        <Td>BSAIT</Td>
-        <Td>3rd</Td>
-        <Td isNumeric>2024-2025</Td>
-        <Td>1st Sem/2nd Sem</Td>
-        <Td>Taguig City</Td>
-        <Td isNumeric>09091469100</Td>
-        <Td isNumeric>Apr 7, 2001</Td>
-        <Td>M</Td>
-        <Td>
-          <Button variant="ghost" leftIcon={<ViewIcon />}></Button>
-          <Button variant="ghost" leftIcon={<EditIcon />}></Button>
-          <Button variant="ghost" leftIcon={<DeleteIcon />}></Button>
-        </Td>
-      </Tr>
-    </Tbody>
-    <Tfoot>
-      <Tr>
-        <Th>Lorem, ipsum.</Th>
-        <Th>Lorem.</Th>
-        <Th isNumeric>Lorem, ipsum.</Th>
-      </Tr>
-    </Tfoot>
-  </Table>
-</TableContainer> */}
+  const handleViewClick = (student) => {
+    setSelectedStudent(student);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedStudent(null);
+  };
+
+  return (
+    <>
+      <Filters />
+      <SimpleGrid minChildWidth="120px" spacing="10px" mt="20px">
+        {studentData.map((student) => (
+          <Card
+            key={student.id}
+            bg="purple.200"
+            height="80px"
+            rounded="lg"
+            shadow="lg"
+            p="10px"
+            position="relative"
+          >
+            <List spacing={3}>
+              <ListItem>
+                <Text color="purple.800" fontSize={12}>{student.name}</Text>
+              </ListItem>
+            </List>
+            <Divider borderColor="gray.400" />
+            <Button
+              position="absolute"
+              size="xs"
+              colorScheme="purple"
+              textColor="white"
+              top="50%"
+              left="50%"
+              transform="translate(-50%, -50%)"
+              onClick={() => handleViewClick(student)}
+            >
+              View
+            </Button>
+          </Card>
+        ))}
+      </SimpleGrid>
+      <IdModal
+        isOpen={modalOpen}
+        onClose={handleCloseModal}
+        studentName={selectedStudent?.name}
+      />
+    </>
+  );
+}
